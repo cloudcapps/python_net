@@ -1,0 +1,19 @@
+line console 0
+ logging sync
+int g0/0
+ ip add 192.168.1.15 255.255.255.0
+ no shut
+ exit
+ip route 0.0.0.0 0.0.0.0 192.168.1.1
+no ip domain-lookup
+hostname R5
+ip domain-name cappshome.net
+crypto key generate rsa mod 2048
+line vty 0 14
+ login local
+ transport input ssh
+ exit
+ip ssh version 2
+username jcapps priv 15 secret cisco
+exit
+
